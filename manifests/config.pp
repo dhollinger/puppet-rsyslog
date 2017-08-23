@@ -9,11 +9,6 @@ class rsyslog::config (
   Optional[Hash] $modules = {},
 ) {
 
-  concat { "${::rsyslog::confdir}/${::rsyslog::target_file}":
-    owner  => 'root',
-    notify => Service[$::rsyslog::service_name],
-  }
-
   include rsyslog::config::modules
   include rsyslog::config::global
   include rsyslog::config::legacy
@@ -22,7 +17,6 @@ class rsyslog::config (
   include rsyslog::config::actions
   include rsyslog::config::inputs
   include rsyslog::config::custom
-
 
 }
 
